@@ -4,22 +4,23 @@ Tested hardware:
 
 `1. Grasshopper3 GS3-U3-23S6M`
 
-### 1. Install usb3.0 driver (APS-IT)
+## 1. Install usb3.0 driver (APS-IT)
 
 Use `lspci | grep USB` to see if system can see the USB controller
 
->02:00.0 USB controller: Fresco Logic FL1100 USB 3.0 Host Controller (rev 10)
+`02:00.0 USB controller: Fresco Logic FL1100 USB 3.0 Host Controller (rev 10)`
 
-Use `dmesg` command to see if system can detect camera when it is plugged in
+Plugin camera to one of the usb 3.0 port, use `dmesg` command to see if system can detect camera
+```
+usb 4-1: new SuperSpeed USB device number 3 using xhci_hcd  
+usb 4-1: New USB device found, idVendor=1e10, idProduct=3300   
+usb 4-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3  
+usb 4-1: Product: Grasshopper3 GS3-U3-23S6M  
+usb 4-1: Manufacturer: Point Grey Research  
+usb 4-1: SerialNumber: 0117xxxx  
+```
 
-> usb 4-1: new SuperSpeed USB device number 3 using xhci_hcd  
-> usb 4-1: New USB device found, idVendor=1e10, idProduct=3300   
-> usb 4-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3  
-> usb 4-1: Product: Grasshopper3 GS3-U3-23S6M  
-> usb 4-1: Manufacturer: Point Grey Research  
-> usb 4-1: SerialNumber: 0117xxxx  
-
-### 2. Install Pointgrey driver (APS-IT)
+## 2. Install Pointgrey driver (APS-IT)
 
 * make sure account belongs to group "pgrimaging"
 * `/etc/udev/rules.d/40-pgr.rules` should looks like below. (Note that KERNEL mode should be **"0666"**)
@@ -85,3 +86,5 @@ Grabbed image 9
 Done! Press Enter to exit...
 ```
 If you see 10 images are saved successfully in the current folder, you are in good shape.
+
+## 3. Install Pointgrey IOC
